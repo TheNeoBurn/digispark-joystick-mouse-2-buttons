@@ -14,3 +14,26 @@ Connections:
 
 I used the 10kΩ / 34kΩ voltage divider to use PB5 despite not being able to deactivate its reset functionality for my chip. This way, it won't trigger the reset because of values below 1/2 VCC but will instead drastically shorten the possible value range.
 
+
+Finding fitting values for potentiometer:
+
+```c
+#include "DigiKeyboard.h"
+
+void setup() {
+  pinMode(PB2, INPUT);
+  pinMode(PB5, INPUT);
+  DigiKeyboard.delay(5000);
+}
+
+void loop() {
+  int a2 = analogRead(1); // PB2 is Analog 1
+  int a5 = analogRead(0); // PB5 is Analog 0
+  DigiKeyboard.print("PB2: ");
+  DigiKeyboard.print(a2);
+  DigiKeyboard.print(", PB5: ");
+  DigiKeyboard.print(a5);
+  DigiKeyboard.print("\n");
+  DigiKeyboard.delay(1000);
+}
+```
